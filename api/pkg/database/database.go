@@ -27,7 +27,11 @@ func connect() *mongo.Client {
 	defer cancel()
 
 	client, err := mongo.Connect(ctx, clientOptions)
-	if err != nil && client.Ping(ctx, nil) != nil {
+	if err != nil {
+		log.Fatalf("%s: %s", "Could not connect to the mongodb instance", err)
+	}
+
+	if err = client.Ping(ctx, nil); err != nil {
 		log.Fatalf("%s: %s", "Could not connect to the mongodb instance", err)
 	}
 
