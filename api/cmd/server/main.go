@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/pkg/database"
 	"log"
 	"os"
 
@@ -10,6 +11,8 @@ import (
 )
 
 func run() error {
+	database.Init()
+
 	r := gin.Default()
 	r.Use(cors.Default())
 
