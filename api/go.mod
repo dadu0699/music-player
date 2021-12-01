@@ -2,7 +2,11 @@ module api
 
 go 1.17
 
-require github.com/gin-gonic/gin v1.7.7
+require (
+	github.com/gin-gonic/gin v1.7.7
+	github.com/joho/godotenv v1.4.0
+	github.com/rs/cors v1.8.0
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
