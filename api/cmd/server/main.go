@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/pkg/app"
 	"api/pkg/database"
 	"log"
 	"os"
@@ -13,16 +14,14 @@ import (
 func run() error {
 	database.Init()
 
-	r := gin.Default()
-	r.Use(cors.Default())
+	router := gin.Default()
+	router.Use(cors.Default())
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	router.SetTrustedProxies([]string{"127.0.0.1"})
 
-	if err := r.Run(); err != nil {
+	app.Routes(router)
+
+	if err := router.Run(); err != nil {
 		return err
 	}
 	return nil
