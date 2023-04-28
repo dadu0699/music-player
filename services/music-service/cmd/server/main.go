@@ -71,7 +71,7 @@ func run() error {
 
 func main() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatalf("Error loading .env file: %v", err)
+		log.Println("Warning: No .env file found")
 	}
 
 	if err := run(); err != nil {
